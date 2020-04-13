@@ -1,0 +1,11 @@
+canislatrancoxus@gmail.com
+
+project         :   projecto1
+Client ID       :   74693287067-jprq8o94edi8qs7u1vrhr04af6g4vdif.apps.googleusercontent.com
+Client Secret   :   x9djfUPQr4EiFRaeTzcVYd_V
+
+credentials: c:/aat/data/credentials.json
+
+12345 6
+    A B
+
