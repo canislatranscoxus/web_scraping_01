@@ -3,7 +3,7 @@ Description:    This script parses an html local file ( a gcp practice exam )
                 and return as output your score
 
 --------------------------------------------------------------------------- '''
-
+import argparse
 import os.path
 import pathlib
 import re
@@ -15,7 +15,7 @@ from   bs4 import BeautifulSoup as bs
 
 class Gcp_test_grader:
     #file_path = 'C:/aat/prg/web_scraping_01/data/exam2020-05-22.html'
-    file_path = 'C:/aat/prg/web_scraping_01/data/2020-06-29_000.html'
+    file_path = 'C:/aat/prg/web_scraping_01/data/2020-06-30_000.html'
 
     right_answers = 0
     wrong_answers = 0
@@ -70,6 +70,7 @@ class Gcp_test_grader:
     def print_results(self):
         self.score = 100.0 * self.right_answers  / (self.right_answers + self.wrong_answers)
         print( '\n\n\n' + '-' * 80 )
+        print('File          : {}'.format( self.file_path     ) )
         print( 'right answers: {}'.format( self.right_answers ) )
         print( 'wrong answers: {}'.format( self.wrong_answers ) )
         print( 'score        : {}'.format( self.score         ) )
@@ -98,12 +99,20 @@ class Gcp_test_grader:
             print( '\n\n Test_grader.run(), error: {}'.format( error_msg) )
             raise
 
+    def __init__(self, file_path):
+        if file_path != None:
+            self.file_path = file_path
 
 
 if __name__ == '__main__':
     try:
-       gcp_test_grader = Gcp_test_grader()
-       gcp_test_grader.run()
+        parser = argparse.ArgumentParser()
+        parser.add_argument( '--file_path', help="Score a practice test. The file must an html. Usage: python Gcp_test_grader.py data/2020-06-30_000.html")
+        args = parser.parse_args()
+        #print( 'File: {}'.format( args.file_path ) )
+
+        gcp_test_grader = Gcp_test_grader( args.file_path )
+        gcp_test_grader.run()
 
     except Exception as e:
         error_msg = sys.exc_info()[0]
