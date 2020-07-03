@@ -1,7 +1,6 @@
 ''' ---------------------------------------------------------------------------
 Description:    This script parses an html local file ( a gcp practice exam )
                 and return as output your score
-
 --------------------------------------------------------------------------- '''
 import argparse
 import os.path
